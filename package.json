@@ -2,10 +2,13 @@
   "name": "@dobschal/express-route-loader",
   "author": "Sascha Dobschal <sascha@dobschal.eu>",
   "license": "ISC",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/dobschal/express-router-loader"
+  },
   "files": [
     "dist",
     "src"
