@@ -1,4 +1,4 @@
-# Express Auto Loader
+# Express Route Loader
 
 Automaticaly load route handlers from script files, catch errors and map the function name to the URL path.
 
