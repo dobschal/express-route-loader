@@ -7,7 +7,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "repository": {
-    "url": "https://github.com/dobschal/express-router-loader"
+    "url": "https://github.com/dobschal/express-route-loader"
   },
   "files": [
     "dist",
