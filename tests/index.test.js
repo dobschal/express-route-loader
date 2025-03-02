@@ -1,31 +1,30 @@
-import express, {type Express, NextFunction, type Request, type Response} from "express";
-import {routeLoader} from "../src";
-import path from "path";
-import * as net from "net";
+const express = require("express");
+const path = require("node:path");
+const {routeLoader} = require("../index");
 
-const port: number = 3003;
-const app: Express = express();
-let server: net.Server;
+const port = 3003;
+let app = express();
+let server;
 
-function errorHandler (error: unknown, req: Request, res: Response, next: NextFunction) {
-    if(error instanceof Error) {
+function errorHandler(error, req, res, next) {
+    if (error instanceof Error) {
         error = error.message;
     }
     if (res.headersSent) {
         return next(error);
     }
     res.status(500);
-    res.send({ error });
+    res.send({error});
 }
 
-beforeAll(() => {
+beforeAll(async () => {
     app.use(express.json());
     app.use(routeLoader(path.join(__dirname, "routes")));
     app.use(errorHandler);
     server = app.listen(port);
 });
 
-afterAll(() => {
+afterAll(async () => {
     server.close();
 });
 
@@ -37,7 +36,7 @@ test("Test route is applied correctly", async () => {
 });
 
 test("Accepts JSON request params", async () => {
-    const body = { message: "Yeah!" };
+    const body = {message: "Yeah!"};
     const rawResponse = await fetch(`http://localhost:${port}/test`, {
         method: "POST",
         headers: {

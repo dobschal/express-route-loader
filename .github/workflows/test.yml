@@ -1,0 +1,37 @@
+name: Test
+
+on:
+  # Trigger workflow on every push to main
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+concurrency: # only 1 job per branch should run, older runs should be canceled
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: Install NPM dependencies
+        run: npm ci
+      - name: Lint the code with ESLint
+        run: npm run lint
+      - name: Run tests with Jest
+        run: npm run test
