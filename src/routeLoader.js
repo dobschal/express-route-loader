@@ -33,16 +33,17 @@ function _wrapRouteHandler(method) {
     };
 }
 
-function _applyRouterHandler(module, methodName, router) {
+function _applyRouterHandler(module, methodName, router, prefix) {
     const method = module[methodName];
     if (typeof method !== "function") return;
     const [httpMethod, ...pathParts] = methodName.split(/(?=[A-Z])/).map(s => s.toLowerCase());
-    router[httpMethod](`/${pathParts.join("/")}`, _wrapRouteHandler(method));
+    router[httpMethod](`${prefix}/${pathParts.join("/")}`, _wrapRouteHandler(method));
 }
 
 async function _loadRouteHandlers(router, module) {
+    const prefix = module.prefix || "";
     for (const methodName in module) {
-        _applyRouterHandler(module, methodName, router);
+        _applyRouterHandler(module, methodName, router, prefix);
     }
 }
 

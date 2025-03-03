@@ -1,42 +1,45 @@
+const prefix = "/test";
+
 function fakePromise() {
     return new Promise(resolve => {
         setTimeout(resolve);
     });
 }
 
-function getTest() {
+function get() {
     return "Yeah!";
 }
 
-function postTest({message}) {
+function post({message}) {
     return {message};
 }
 
-function putTest(body, req, res) {
+function put(body, req, res) {
     res.send({worked: "yes"});
 }
 
-function deleteTest() {
+function deleteUser() {
     throw new Error("OMG");
 }
 
-async function patchPromiseTest() {
+async function patchPromise() {
     await fakePromise();
     return {
         yeah: "uuuh"
     };
 }
 
-async function patchPromiseErrorTest() {
+async function patchPromiseError() {
     await fakePromise();
     throw new Error("OMG");
 }
 
 module.exports = {
-    getTest,
-    postTest,
-    putTest,
-    deleteTest,
-    patchPromiseTest,
-    patchPromiseErrorTest
+    prefix,
+    get,
+    post,
+    put,
+    deleteUser,
+    patchPromise,
+    patchPromiseError
 };

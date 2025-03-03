@@ -50,7 +50,7 @@ test("Accepts JSON request params", async () => {
 });
 
 test("Thrown errors are caught correctly", async () => {
-    const rawResponse = await fetch(`http://localhost:${port}/test`, {
+    const rawResponse = await fetch(`http://localhost:${port}/test/user`, {
         method: "DELETE",
     });
     expect(rawResponse.status).toBe(500);
@@ -68,7 +68,7 @@ test("Manually send response is handled correctly", async () => {
 });
 
 test("Promises are working", async () => {
-    const rawResponse = await fetch(`http://localhost:${port}/promise/test`, {
+    const rawResponse = await fetch(`http://localhost:${port}/test/promise`, {
         method: "PATCH",
     });
     expect(rawResponse.status).toBe(200);
@@ -77,7 +77,7 @@ test("Promises are working", async () => {
 });
 
 test("Error catching in promises is working", async () => {
-    const rawResponse = await fetch(`http://localhost:${port}/promise/error/test`, {
+    const rawResponse = await fetch(`http://localhost:${port}/test/promise/error`, {
         method: "PATCH",
     });
     expect(rawResponse.status).toBe(500);

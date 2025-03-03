@@ -8,10 +8,11 @@
     "Route Loader"
   ],
   "license": "ISC",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/dobschal/express-route-loader"
+    "type": "git",
+    "url": "git+https://github.com/dobschal/express-route-loader.git"
   },
   "scripts": {
     "test": "jest --forceExit",
