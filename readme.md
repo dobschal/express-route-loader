@@ -101,3 +101,14 @@ export function postLogin({password}) {
 }
 ```
 
+## Prefixes
+
+You can add a prefix to each route by exporting a `prefix` string variable.
+
+```javascript
+export const prefix = "/api/v1";
+
+export function getUsers() { // Will be GET /api/v1/users
+}
+```
+
