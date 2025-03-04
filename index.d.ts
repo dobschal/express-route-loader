@@ -1,7 +1,7 @@
 import routeLoader from "./src/routeLoader";
 import {NextFunction, Request, Response} from "express";
 
-export interface RouteParams<BodyType> {
+export interface RouteParams<BodyType = unknown> {
     req: Request,
     res: Response,
     next: NextFunction,
