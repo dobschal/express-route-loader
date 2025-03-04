@@ -20,7 +20,14 @@ function routeLoader(pathToRoutes) {
 function _wrapRouteHandler(method) {
     return async (req, res, next) => {
         try {
-            let response = method(req.body, req, res, next);
+            let response = method({
+                body: req.body,
+                params: req.params,
+                query: req.query,
+                req,
+                res,
+                next
+            });
             if (_isPromise(response)) {
                 response = await response;
             }

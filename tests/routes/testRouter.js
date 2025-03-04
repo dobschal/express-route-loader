@@ -10,11 +10,11 @@ function get() {
     return "Yeah!";
 }
 
-function post({message}) {
-    return {message};
+function post({body}) {
+    return {message: body.message};
 }
 
-function put(body, req, res) {
+function put({res}) {
     res.send({worked: "yes"});
 }
 
